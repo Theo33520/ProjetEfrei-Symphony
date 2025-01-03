@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProfileEntity index{% endblock %}
+
+{% block body %}
+    <h1>ProfileEntity index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>ZipCode</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for profile_entity in profile_entities %}
+            <tr>
+                <td>{{ profile_entity.id }}</td>
+                <td>{{ profile_entity.address }}</td>
+                <td>{{ profile_entity.phone }}</td>
+                <td>{{ profile_entity.country }}</td>
+                <td>{{ profile_entity.city }}</td>
+                <td>{{ profile_entity.zipCode }}</td>
+                <td>
+                    <a href="{{ path('app_profile_show', {'id': profile_entity.id}) }}">show</a>
+                    <a href="{{ path('app_profile_edit', {'id': profile_entity.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_profile_new') }}">Create new</a>
+{% endblock %}
